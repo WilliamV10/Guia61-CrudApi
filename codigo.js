@@ -1,5 +1,6 @@
+const url='https://retoolapi.dev/GDHCXq/productos/';
 var fila =
-  "<tr><td class='id'></td><td class='foto'></td><td class='price'></td><td class='title'></td><td class='description'></td><td class='category'></td></tr>";
+  "<tr><td class='id'></td><td class='foto'></td><td class='price'></td><td class='title'></td><td class='description'></td><td class='category'></td><td><a class='btn btn-danger' id='btnEliminar'>Eliminar</a></td></tr>";
 var productos = null;
 function codigoCat(catstr) {
   var code = "null";
@@ -27,6 +28,7 @@ function listarProductos(productos) {
   var num = productos.length;
   var formularioP= document.getElementById("formularioP");
   var listado = document.getElementById("listado");
+  listado.style.display="none";
   var ids, titles, prices, descriptions, categories, fotos;
   var tbody = document.getElementById("tbody"),
     nfila = 0;
@@ -40,6 +42,7 @@ function listarProductos(productos) {
   categories = document.getElementsByClassName("category");
   fotos = document.getElementsByClassName("foto");
   prices = document.getElementsByClassName("price");
+
   if (orden === 0) {
     orden = -1;
     precio.innerHTML = "Precio";
@@ -73,7 +76,7 @@ function listarProductos(productos) {
 }
 
 function obtenerProductos() {
-  fetch("https://retoolapi.dev/GDHCXq/productos")
+  fetch(url)
     .then((res) => res.json())
     .then((data) => {
       productos = data;
@@ -101,20 +104,65 @@ function ordenarAsc(p_array_json, p_key) {
   });
 }
 function agregarProducto(){
-  body_json= {
-  image : document.getElementById("UrlImagen").value,
-  title: document.getElementById("titulo").value,
-  price : document.getElementById("precio").value,
-  description : document.getElementById("descripcion").value,
-  category : document.getElementById("categoria").value
-  }
-  fetch('https://retoolapi.dev/GDHCXq/productos',{method:"POST",
-body: JSON.stringify(body_json),
-headers: {
-  'Accept': 'application/json',
-  'Content-type': 'application/json; charset=UTF-8'
-}
-})
-listarProductos();
+  const body_json = {
+    image: document.getElementById("UrlImagen").value,
+    title: document.getElementById("titulo").value,
+    price: document.getElementById("precio").value,
+    description: document.getElementById("descripcion").value,
+    category: document.getElementById("categoria").value
+};
 
+fetch(url, {
+    method: "POST",
+    body: JSON.stringify(body_json),
+    headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json; charset=UTF-8'
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Ocurrió un error al agregar el producto.');
+    }
+    // Si la solicitud POST es exitosa, llama a obtenerProductos()
+    obtenerProductos();
+    return response.json();
+})
+.then(data => {
+    swal("Agregado", "Su producto fue agregado con éxito!", "success");
+    document.getElementById("titulo").value = '';
+    document.getElementById("UrlImagen").value = '';
+    document.getElementById("descripcion").value = '';
+    document.getElementById("precio").value = '';
+    document.getElementById("categoria").value = '';
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+var formularioP= document.getElementById("formularioP");
+var listado=document.getElementById("listado");
+formularioP.style.display = "none";
+
+  listado.style.display = "none";
 }
+
+//eliminar
+const on=(element,event,selector,handler)=>{
+  element.addEventListener(event,e => {
+    if(e.target.closest(selector)){
+      handler(e);
+    }
+  })
+}
+on(document, 'click', '#btnEliminar', e => {
+  const fila = e.target.parentNode.parentNode;
+  var id = fila.firstElementChild.innerHTML;
+  console.log(id);
+  fetch(url+id,{method:'Delete'
+  }).then(res => {
+    obtenerProductos();
+    res.json()}
+  ).then(data => {
+    swal('Eliminado', 'El producto ha sido eliminado.');
+  })
+});

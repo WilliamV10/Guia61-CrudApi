@@ -1,6 +1,5 @@
     img {width:3cm;height:3cm;}
-table {width:80%;margin:auto; background-color: darkgrey;
-}
+/*table {width:80%;margin:auto; background-color: darkgrey;}*/
 th#price {cursor:pointer;}
 li {color:blue;}
 /*si chequea muestra los productos sin cheque desaparecen los productos*/

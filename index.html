@@ -22,9 +22,9 @@
 	<p>
 		<span id="color">Grupo de trabajo # 5</span>
 	</p>
-	<p><button class="btn btn-info" onclick="obtenerProductos();this.style.display='none';">Obtener Productos</button>
+	<p><button class="btn btn-outline-info" onclick="obtenerProductos();this.style.display='none';">Obtener Productos</button>
 	</p>
-	<div id="formularioP">
+	<div class="container" id="formularioP">
 		<h1>Agregar nuevo Producto</h1>
 		<form action="https://retoolapi.dev/GDHCXq/productos" method="post">
 			<div class="form-group">
@@ -62,7 +62,7 @@
 			</div>
 
 			<div class="form-group text-center">
-				<a type="submit" onclick="agregarProducto()" class="btn btn-primary">Agregar</a>
+				<a type="submit" onclick="agregarProducto()" class="btn btn-outline-success">Agregar</a>
 			</div>
 		</form>
 	</div>
@@ -77,21 +77,23 @@
 				<li>Click en la imagen para Acercamiento</li>
 				<li>Click en precio para ordenar Asc o Desc</li>
 			</ol>
-			<div class="table-responsive">
-				<table class="table table-hover" id="tabla" border="1">
-					<thead class="table-dark">
-						<tr>
-							<th id="columID">id</th>
-							<th>foto</th>
-							<th id="price">price</th>
-							<th>title</th>
-							<th>description</th>
-							<th>category</th>
-							<th>Eliminar</th>
-						</tr>
-					</thead>
-					<tbody class="table-info" id="tbody" data-id="tabla-productos"></tbody>
-				</table>
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-hover table-sm" id="tabla" border="1">
+						<thead class="table-dark">
+							<tr>
+								<th id="columID">id</th>
+								<th>foto</th>
+								<th id="price">price</th>
+								<th>title</th>
+								<th>description</th>
+								<th>category</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody class="table-info" id="tbody" data-id="tabla-productos"></tbody>
+					</table>
+				</div>
 			</div>
 		</form>
 	</div>

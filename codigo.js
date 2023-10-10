@@ -4,16 +4,16 @@ var productos = null;
 function codigoCat(catstr) {
   var code = "null";
   switch (catstr) {
-    case "electronics":
+    case "electronicos":
       code = "c1";
       break;
-    case "jewelery":
+    case "joyeria":
       code = "c2";
       break;
-    case "men's clothing":
+    case "caballeros":
       code = "c3";
       break;
-    case "women's clothing":
+    case "damas":
       code = "c4";
       break;
   }
@@ -75,9 +75,13 @@ function obtenerProductos() {
     .then((res) => res.json())
     .then((data) => {
       productos = data;
-      listarProductos(data);
-    });
-}
+      productos.forEach(
+        function(producto){
+          producto.price=parseFloat(producto.price);
+        }
+      );
+      listarProductos(data)});
+    }
 
 function ordenarDesc(p_array_json, p_key) {
   p_array_json.sort(function (a, b) {

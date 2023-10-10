@@ -25,6 +25,7 @@ function listarProductos(productos) {
   var precio = document.getElementById("price");
   precio.setAttribute("onclick", "orden*=-1;listarProductos(productos);");
   var num = productos.length;
+  var formularioP= document.getElementById("formularioP");
   var listado = document.getElementById("listado");
   var ids, titles, prices, descriptions, categories, fotos;
   var tbody = document.getElementById("tbody"),
@@ -51,6 +52,7 @@ function listarProductos(productos) {
     precio.innerHTML = "Precio D";
     precio.style.color = "blue";
   }
+  formularioP.style.display = "block";
 
   listado.style.display = "block";
   for (nfila = 0; nfila < num; nfila++) {
@@ -97,4 +99,22 @@ function ordenarAsc(p_array_json, p_key) {
     if (a[p_key] < b[p_key]) return -1;
     return 0;
   });
+}
+function agregarProducto(){
+  body_json= {
+  image : document.getElementById("UrlImagen").value,
+  title: document.getElementById("titulo").value,
+  price : document.getElementById("precio").value,
+  description : document.getElementById("descripcion").value,
+  category : document.getElementById("categoria").value
+  }
+  fetch('https://retoolapi.dev/GDHCXq/productos',{method:"POST",
+body: JSON.stringify(body_json),
+headers: {
+  'Accept': 'application/json',
+  'Content-type': 'application/json; charset=UTF-8'
+}
+})
+listarProductos();
+
 }

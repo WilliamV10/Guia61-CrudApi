@@ -39,3 +39,31 @@ tbody{
     font-weight: bold;
     font-style: italic;
 }
+#formularioP h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#formularioP {
+    display: none;
+    max-width: 800px; /* Aumentar el ancho máximo según tus preferencias */
+    margin: auto;
+    background-color: rgb(102, 137, 192);
+    padding: 10px; /* Reducir el relleno */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* CSS para reducir la altura del formulario */
+#formularioP .form-group {
+    margin-bottom: 5px; /* Reducir aún más el espacio entre los campos */
+}
+
+#formularioP label {
+    font-weight: bold;
+    font-size: 14px; /* Reducir el tamaño de fuente de las etiquetas */
+}
+
+#formularioP .form-control {
+    padding: 3px; /* Reducir el relleno de los campos de entrada */
+    font-size: 12px; /* Reducir el tamaño de fuente de los campos de entrada */
+}

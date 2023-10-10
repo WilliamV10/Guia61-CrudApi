@@ -103,6 +103,7 @@ function ordenarAsc(p_array_json, p_key) {
     return 0;
   });
 }
+//Agregar producto
 function agregarProducto(){
   const body_json = {
     image: document.getElementById("UrlImagen").value,
@@ -124,12 +125,14 @@ fetch(url, {
     if (!response.ok) {
         throw new Error('Ocurrió un error al agregar el producto.');
     }
-    // Si la solicitud POST es exitosa, llama a obtenerProductos()
-    obtenerProductos();
+    
     return response.json();
 })
 .then(data => {
     swal("Agregado", "Su producto fue agregado con éxito!", "success");
+    const tablaProductos = document.querySelector("#tbody[data-id='tabla-productos']");
+    const nuevaFila = crearFilaProducto(data); // Crea la nueva fila con los datos del producto
+    tablaProductos.appendChild(nuevaFila); // Agrega la nueva fila al final de la tabla
     document.getElementById("titulo").value = '';
     document.getElementById("UrlImagen").value = '';
     document.getElementById("descripcion").value = '';
@@ -139,11 +142,6 @@ fetch(url, {
 .catch(error => {
     console.error('Error:', error);
 });
-var formularioP= document.getElementById("formularioP");
-var listado=document.getElementById("listado");
-formularioP.style.display = "none";
-
-  listado.style.display = "none";
 }
 
 //eliminar
@@ -166,3 +164,16 @@ on(document, 'click', '#btnEliminar', e => {
     swal('El producto ha sido eliminado.');
   })
 });
+function crearFilaProducto(producto) {
+  const nuevaFila = document.createElement("tr");
+  nuevaFila.innerHTML = `
+    <td>${producto.id}</td>
+    <td><img src="${producto.UrlImagen}" alt="Imagen del producto" width="50" height="50"></td>
+    <td>${producto.precio}</td>
+    <td>${producto.titulo}</td>
+    <td>${producto.descripcion}</td>
+    <td>${producto.categoria}</td>
+    <td><button class="btn btn-danger" id="btnEliminar">Eliminar</button></td>
+  `;
+  return nuevaFila;
+}

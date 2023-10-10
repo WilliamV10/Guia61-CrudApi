@@ -1,4 +1,4 @@
-img {width:3cm;height:3cm;}
+    img {width:3cm;height:3cm;}
 table {width:80%;margin:auto; background-color: darkgrey;
 }
 th#price {cursor:pointer;}
@@ -17,6 +17,9 @@ th{
     font-weight: bold;
     font-style: italic;
     text-align: center;
+}
+#columID{
+    width: 5%;
 }
 tr{
     color: black;

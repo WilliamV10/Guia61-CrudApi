@@ -160,9 +160,9 @@ on(document, 'click', '#btnEliminar', e => {
   console.log(id);
   fetch(url+id,{method:'Delete'
   }).then(res => {
-    obtenerProductos();
+    fila.remove();
     res.json()}
   ).then(data => {
-    swal('Eliminado', 'El producto ha sido eliminado.');
+    swal('El producto ha sido eliminado.');
   })
 });

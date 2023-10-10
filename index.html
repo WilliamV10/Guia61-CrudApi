@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<title>VG18011 Ejemplo web api</title>
+	<meta charset="utf-8" />
+	<LINK REL=StyleSheet HREF="estilo.css" TYPE="text/css" MEDIA=screen>
+	<script src="codigo.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<h2 >… Ejemplo web api</h2>
+	<p>
+	<span id="color">Carnet: </span><span id="negrita"> VG18011</span>
+	</p>
+	<p>
+	<span id="color">Nombre: </span><span id="negrita" > William Alexander Ventura Gonzalez</span>
+	</p>
+	<p>
+	<span id="color">Grupo de trabajo # 5</span>
+	</p>
+	<p><button class="btn btn-info" onclick="obtenerProductos();this.style.display='none';">Obtener Productos</button>
+	</p>
+	<div id="listado" style="display:none;">
+		<form name="filtroprods" id="filtroprods">
+			Seleccione Categorias
+			<input type="checkbox" id="c1" value="c1" checked>Electronicos
+			<input type="checkbox" id="c2" value="c2" checked>Joyería
+			<input type="checkbox" id="c3" value="c3" checked>Ropa Caballero
+			<input type="checkbox" id="c4" value="c4" checked>Ropa Dama
+			<ol>
+				<li>Click en la imagen para Acercamiento</li>
+				<li>Click en precio para ordenar Asc o Desc</li>
+			</ol>
+			<table class="table-primary" id="tabla" border="1">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>foto</th>
+						<th id="price">price</th>
+						<th>title</th>
+						<th>description</th>
+						<th>category</th>
+					</tr>
+				</thead>
+				<tbody id="tbody"></tbody>
+			</table>
+		</form>
+	</div>
+
+
+</body>
+
+</html>

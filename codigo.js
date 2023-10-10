@@ -71,7 +71,7 @@ function listarProductos(productos) {
 }
 
 function obtenerProductos() {
-  fetch("https://fakestoreapi.com/products")
+  fetch("https://retoolapi.dev/uTu19M/productos")
     .then((res) => res.json())
     .then((data) => {
       productos = data;

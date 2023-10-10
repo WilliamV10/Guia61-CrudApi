@@ -47,10 +47,10 @@ tbody{
     margin-bottom: 20px;
 }
 #formularioP {
+    background-color: darkgrey;
     display: none;
     max-width: 800px; /* Aumentar el ancho máximo según tus preferencias */
     margin: auto;
-    background-color: rgb(102, 137, 192);
     padding: 10px; /* Reducir el relleno */
     border: 1px solid #ccc;
     border-radius: 5px;
